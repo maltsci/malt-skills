@@ -1,0 +1,13 @@
+malt-skills
+Copyright 2026 maltsci
+
+This product includes open-source Agent Skills maintained by MaltSci (麦伴科研).
+Website: https://maltsci.com
+
+Medical / evidence-appraisal skills in this repository are for educational and
+research support only. They do not constitute clinical advice, diagnosis, or
+treatment recommendations.
+
+Framework names (Oxford CEBM, GRADE, OpenEvidence, etc.) are used as proper
+nouns for methodology reference. OpenEvidence-style grades produced by skills
+in this repo are local heuristics and are not official OpenEvidence EvidenceGrade.

@@ -1,0 +1,21 @@
+# macOS metadata
+.DS_Store
+
+# Python caches and test artifacts
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Local generated outputs / env
+/output/
+.env
+.env.*
+!.env.example
+
+# Editor
+.idea/
+.vscode/
+*.swp

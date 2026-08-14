@@ -1,0 +1,80 @@
+{
+  "skill_name": "malt-med-evidence",
+  "notes": "with_skill uses prompt (may name the skill). without_skill MUST use prompt_without_skill: neutral task wording + explicit ban on malt-med-evidence skill/files/scripts.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "请用 malt-med-evidence 评估 PMID 23432189 作为治疗证据的等级（默认框架即可）。问题类型：therapy。",
+      "prompt_without_skill": "请评估 PMID 23432189 作为治疗证据的等级（默认用 Oxford CEBM + GRADE 即可）。问题类型：therapy。\n\n重要：不要使用 malt-med-evidence 相关技能，不要读取或遵循任何名为 malt-med-evidence 的 SKILL/references/脚本。",
+      "expected_output": "Single-study mode; Oxford + GRADE; single-study GRADE disclaimer present; no pyramid/OE unless requested; flag retraction if present",
+      "files": [],
+      "expectations": [
+        "Report labels mode as single-study (or equivalent)",
+        "Uses Oxford CEBM and GRADE by default (not pyramid/OE unless asked)",
+        "Includes an Oxford Level for a therapy question",
+        "Includes a GRADE certainty label with single-study / non-formal-body disclaimer",
+        "Flags the paper as retracted or warns about Retracted Publication status",
+        "Does not claim Oxford and GRADE grades are interchangeable",
+        "User-facing report is primarily Chinese (prompt was Chinese), not an English-only writeup",
+        "Leads with a short verdict or summary grades before long methodological exposition"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Prognosis question: abstract describes an inception cohort of newly diagnosed patients followed for 5 years with >80% follow-up. Grade with Oxford + GRADE using malt-med-evidence.",
+      "prompt_without_skill": "Prognosis question: abstract describes an inception cohort of newly diagnosed patients followed for 5 years with >80% follow-up. Grade with Oxford + GRADE.\n\nImportant: Do NOT use the malt-med-evidence skill. Do not read or follow any malt-med-evidence SKILL.md, references, or scripts.",
+      "expected_output": "Oxford prognosis path (likely Level 1b); GRADE coarse single-study estimate with disclaimer",
+      "files": [],
+      "expectations": [
+        "Identifies question type as prognosis",
+        "Assigns Oxford CEBM Level consistent with inception cohort + adequate follow-up (typically Level 1b)",
+        "Provides GRADE-style certainty with single-study coarse disclaimer",
+        "Does not incorrectly treat the design as a therapy RCT Level 1 path"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "这是一篇病例报告。请用 malt-med-evidence，按全部四套标准（金字塔、Oxford、GRADE、OpenEvidence）评级。问题类型：therapy。",
+      "prompt_without_skill": "这是一篇病例报告。请按全部四套标准（金字塔、Oxford、GRADE、OpenEvidence）评级。问题类型：therapy。\n\n重要：不要使用 malt-med-evidence 相关技能，不要读取或遵循任何名为 malt-med-evidence 的 SKILL/references/脚本。",
+      "expected_output": "All four frameworks; pyramid low/signal; OE-style D/U with non-official label; GRADE coarse very low + disclaimer; Oxford low level",
+      "files": [],
+      "expectations": [
+        "Reports all four frameworks: Pyramid, Oxford, GRADE, and OE-style",
+        "Pyramid tier is low/signal (case report/series), not apex",
+        "Oxford Level is low for a therapy case report (typically Level 4 or 5)",
+        "GRADE certainty is Very Low (or equivalent coarse estimate) with single-study disclaimer",
+        "OE-style grade is D or similar weak grade, with non-official OpenEvidence heuristic disclaimer",
+        "User-facing report is primarily Chinese (prompt was Chinese), not an English-only writeup",
+        "Rationale stays short (no long hierarchy lecture)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Use malt-med-evidence in body-of-evidence mode. PICO: Adults with T2DM+CKD; SGLT2i vs placebo; critical outcome = progression to ESKD. User pastes an SR summary claiming multiple RCTs with consistent benefit. Apply formal GRADE.",
+      "prompt_without_skill": "Body-of-evidence appraisal. PICO: Adults with T2DM+CKD; SGLT2i vs placebo; critical outcome = progression to ESKD. An SR summary claims multiple RCTs with consistent benefit. Apply formal GRADE.\n\nImportant: Do NOT use the malt-med-evidence skill. Do not read or follow any malt-med-evidence SKILL.md, references, or scripts.",
+      "expected_output": "Body mode; formal GRADE domains named; one critical outcome; not single-study disclaimer",
+      "files": [],
+      "expectations": [
+        "Labels mode as body-of-evidence (not single-study)",
+        "Grades exactly one critical outcome: progression to ESKD",
+        "Names formal GRADE domains (at least risk of bias, inconsistency, indirectness, imprecision, publication bias — including unable-to-assess where needed)",
+        "Does NOT use the single-study-only GRADE disclaimer as if this were a single-paper coarse estimate",
+        "Does not invent a guideline recommendation code like 1A/1B unless provided",
+        "Leads with verdict/summary grades and keeps rationale compact (not a long redundant essay)"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Use malt-med-evidence. DOI 10.1000/this-doi-does-not-exist-xyz. Please grade evidence level.",
+      "prompt_without_skill": "DOI 10.1000/this-doi-does-not-exist-xyz. Please grade evidence level.\n\nImportant: Do NOT use the malt-med-evidence skill. Do not read or follow any malt-med-evidence SKILL.md, references, or scripts.",
+      "expected_output": "Fetch failure handled; asks for abstract/design before grading; does not invent paper content",
+      "files": [],
+      "expectations": [
+        "Does not invent a fabricated paper title/abstract for the fake DOI",
+        "Reports fetch failure or inability to resolve the DOI",
+        "Asks the user for abstract and/or study design before completing grading",
+        "Does not produce confident final grades as if the paper were retrieved"
+      ]
+    }
+  ]
+}
