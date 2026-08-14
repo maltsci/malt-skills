@@ -64,13 +64,26 @@ npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
 npx skills add maltsci/malt-skills --skill '*' --yes --copy
 ```
 
-### Clone for Claude Code / Cursor / Codex
+### Prompt a coding agent to install
+
+Paste this into **Claude Code / Codex / Cursor** (change the skill name if needed):
+
+```text
+Install malt-med-evidence from this repo:
+https://github.com/maltsci/malt-skills
+
+Run: npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
+(Add --global and --agent claude-code / codex / cursor when needed.)
+Keep the full skill directory (references/, scripts/); do not copy only SKILL.md.
+```
+
+### Clone manually
 
 ```bash
 git clone https://github.com/maltsci/malt-skills.git
 ```
 
-Copy or symlink `skills/malt-med-evidence/` into your agent’s skills path, or ask the agent to read that folder’s `SKILL.md` first.
+Copy or symlink `skills/malt-med-evidence/` into your agent’s skills path.
 
 ## Skill index
 

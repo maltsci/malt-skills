@@ -64,13 +64,26 @@ npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
 npx skills add maltsci/malt-skills --skill '*' --yes --copy
 ```
 
-### Clone 后给 Claude Code / Cursor / Codex
+### 用 Prompt 让 Coding Agent 安装
+
+把下面这段发给 **Claude Code / Codex / Cursor** 即可（按需改技能名）：
+
+```text
+请从这个仓库安装 malt-med-evidence：
+https://github.com/maltsci/malt-skills
+
+执行：npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
+（需要时加 --global，以及 --agent claude-code / codex / cursor）
+必须保留完整目录（含 references/、scripts/），不要只复制 SKILL.md。
+```
+
+### Clone 后手动接入
 
 ```bash
 git clone https://github.com/maltsci/malt-skills.git
 ```
 
-将 `skills/malt-med-evidence/` 整目录复制或链接到对应 Agent 的 skills 路径，或在对话中要求 Agent 先阅读该目录下的 `SKILL.md`。
+将 `skills/malt-med-evidence/` 整目录复制或链接到对应 Agent 的 skills 路径。
 
 ## 技能索引
 
