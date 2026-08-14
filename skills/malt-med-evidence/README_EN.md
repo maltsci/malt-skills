@@ -1,6 +1,6 @@
 # malt-med-evidence
 
-Medical evidence appraisal skill: structured grades for a DOI / PMID / abstract / PICO or clinical claim.
+Medical evidence appraisal skill: structured appraisal of a DOI / PMID / abstract / PICO or clinical claim.
 
 **Stage:** Read & Ask  
 **Repo:** [maltsci/malt-skills](https://github.com/maltsci/malt-skills) · [中文](README.md)

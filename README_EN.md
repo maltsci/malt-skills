@@ -9,7 +9,7 @@
 
 ## About
 
-`malt-skills` is an open-source collection of research Agent Skills from **MaltSci** ([maltsci.com](https://maltsci.com)). Skills cover multiple stages of the research workflow—topic exploration, reading & evidence appraisal, writing & delivery, and figures. Install via `npx skills` into common coding agents. **The first published skill is `malt-med-evidence` (medical evidence grading).**
+`malt-skills` is an open-source collection of research Agent Skills maintained by **MaltSci** ([maltsci.com](https://maltsci.com)). It focuses on stages of the research workflow such as topic exploration, reading and evidence appraisal, writing and delivery, and figures. The repository currently provides its first skill, `malt-med-evidence` (medical evidence appraisal); additional stages will be added over time. Skills are organized around the standard `SKILL.md` format and can be installed into common coding agents with `npx skills`.
 
 ## Disclaimer
 
@@ -30,7 +30,7 @@
 
 Path: [`skills/malt-med-evidence/`](skills/malt-med-evidence/)
 
-Appraise a paper or evidence body with **Oxford CEBM** + **GRADE** (optional evidence pyramid and OpenEvidence-style heuristic). Inputs: DOI / PMID / abstract / PICO. Output: a short structured report in the user’s language. Single-study GRADE is a coarse estimate, not a formal body-of-evidence rating.
+Perform structured medical evidence appraisal for a DOI, PMID, abstract, PICO, or clinical claim. The default frameworks are **Oxford CEBM** + **GRADE**, with optional evidence pyramid and OpenEvidence-style heuristic. It supports coarse appraisal of a single study and formal GRADE for one named critical outcome in body-of-evidence mode. Output is a short structured report in the user’s language; single-study GRADE is not a formal body-of-evidence rating.
 
 More detail: [English](skills/malt-med-evidence/README_EN.md) · [中文](skills/malt-med-evidence/README.md)
 
@@ -40,8 +40,8 @@ After install, try prompts like:
 
 | Goal | Example prompt |
 | --- | --- |
-| Grade therapy evidence by PMID | Use malt-med-evidence to grade PMID 32970396 for therapy (default frameworks). |
-| Add pyramid + OE | Also add pyramid and OpenEvidence-style grades. |
+| Appraise therapy evidence by PMID | Use malt-med-evidence to appraise PMID 32970396 for therapy (default frameworks). |
+| Add evidence pyramid + OE | Also add the evidence pyramid and OpenEvidence-style grades. |
 | Formal body GRADE | Body-of-evidence mode. PICO: …; critical outcome = …. Formal GRADE for PMID …. |
 | Diagnosis question | Diagnosis: can age-adjusted D-dimer rule out PE? Grade PMID 24643601 (Oxford + GRADE). |
 
@@ -73,7 +73,7 @@ Install malt-med-evidence from this repo:
 https://github.com/maltsci/malt-skills
 
 Run: npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
-(Add --global and --agent claude-code / codex / cursor when needed.)
+Add `--global` for a global install; to target one agent, use a corresponding parameter such as `--agent codex`, `--agent claude-code`, or `--agent cursor`.
 Keep the full skill directory (references/, scripts/); do not copy only SKILL.md.
 ```
 

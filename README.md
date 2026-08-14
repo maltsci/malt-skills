@@ -9,7 +9,7 @@
 
 ## 简介
 
-`malt-skills` 由 [MaltSci.com](https://maltsci.com) **麦伴科研** 维护，收录面向科研全流程的开源 Agent Skills：从课题探索、文献理解与证据评价，到写作交付与科研作图。技能按标准 `SKILL.md` 组织，可用 `npx skills` 安装到主流编码助手。本仓库持续扩展；**当前发布的第一个技能是 `malt-med-evidence`（医学证据评级）**。
+`malt-skills` 由 [MaltSci.com](https://maltsci.com) **麦伴科研** 维护，是一个面向科研工作流的开源 Agent Skills 集合，关注课题探索、文献理解与证据评价、写作交付和科研作图等环节。当前仓库提供第一个技能 `malt-med-evidence`（医学证据评价），其他环节将逐步扩展。技能按标准 `SKILL.md` 组织，可用 `npx skills` 安装到主流编码助手。
 
 ## 免责声明
 
@@ -30,7 +30,7 @@
 
 路径：[`skills/malt-med-evidence/`](skills/malt-med-evidence/)
 
-用 **Oxford CEBM** + **GRADE**（可选证据金字塔、OpenEvidence 风格启发式）评价单篇文献或证据体的等级。输入 DOI / PMID / 摘要 / PICO；输出短结构化评级报告（语言跟随用户提问）。单篇 GRADE 为粗评，不是正式证据体评级。
+对 DOI、PMID、摘要、PICO 或临床主张进行结构化的医学证据评价。默认使用 **Oxford CEBM** + **GRADE**，也可选证据金字塔和 OpenEvidence 风格启发式；支持单篇研究的粗评，以及证据体模式下针对单个关键结局的正式 GRADE。输出短结构化报告，语言跟随用户提问；单篇 GRADE 粗评不是正式证据体评级。
 
 详见技能说明：[中文](skills/malt-med-evidence/README.md) · [English](skills/malt-med-evidence/README_EN.md)
 
@@ -40,8 +40,8 @@
 
 | 想做什么 | 直接这样说 |
 | --- | --- |
-| 按 PMID 做治疗证据评级 | 请用 malt-med-evidence 评估 PMID 32970396 作为治疗证据的等级（默认框架）。 |
-| 补金字塔与 OE | 在上一篇基础上补充金字塔和 OpenEvidence 等级。 |
+| 按 PMID 评价治疗证据 | 请用 malt-med-evidence 评估 PMID 32970396 作为治疗证据的等级（默认框架）。 |
+| 补充金字塔与 OE | 在上一篇基础上补充证据金字塔和 OpenEvidence 风格评级。 |
 | 证据体正式 GRADE | 证据体模式。PICO：…；关键结局=…。请对 PMID … 做正式 GRADE。 |
 | 诊断问题 | 诊断问题：年龄校正 D-dimer 能否排除 PE？请评估 PMID 24643601（Oxford + GRADE）。 |
 
@@ -73,7 +73,7 @@ npx skills add maltsci/malt-skills --skill '*' --yes --copy
 https://github.com/maltsci/malt-skills
 
 执行：npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
-（需要时加 --global，以及 --agent claude-code / codex / cursor）
+需要全局安装时加 `--global`；需要指定 Agent 时使用对应参数，例如 `--agent codex`、`--agent claude-code` 或 `--agent cursor`。
 必须保留完整目录（含 references/、scripts/），不要只复制 SKILL.md。
 ```
 
@@ -89,7 +89,7 @@ git clone https://github.com/maltsci/malt-skills.git
 
 | 技能 | 环节 | 说明 | 路径 |
 | --- | --- | --- | --- |
-| `malt-med-evidence` | 理解与问答 | Oxford / GRADE 等医学证据评级 | [`skills/malt-med-evidence/`](skills/malt-med-evidence/) |
+| `malt-med-evidence` | 理解与问答 | 医学证据评价（Oxford / GRADE 等） | [`skills/malt-med-evidence/`](skills/malt-med-evidence/) |
 
 ## 依赖
 

@@ -1,6 +1,6 @@
 # malt-med-evidence
 
-医学证据评级技能：对 DOI / PMID / 摘要 / PICO 或临床主张给出结构化等级说明。
+医学证据评价技能：对 DOI / PMID / 摘要 / PICO 或临床主张给出结构化评价。
 
 **所属环节：** 理解与问答（Read & Ask）  
 **仓库：** [maltsci/malt-skills](https://github.com/maltsci/malt-skills) · [English](README_EN.md)

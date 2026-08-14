@@ -1,7 +1,7 @@
 ---
 name: malt-med-evidence
 description: >-
-  Grades medical evidence with Oxford CEBM Levels and GRADE certainty (default),
+  Appraises medical evidence with Oxford CEBM Levels and GRADE certainty (default),
   optionally traditional evidence pyramid and OpenEvidence-style A–D±/U heuristics.
   Use whenever the user asks to appraise evidence level/quality/certainty from a
   DOI, PMID, abstract, methods description, clinical claim, or PICO; mentions
