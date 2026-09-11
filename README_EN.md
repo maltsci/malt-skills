@@ -2,14 +2,14 @@
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-2ea44f)](LICENSE)
 [![Install](https://img.shields.io/badge/install-Claude%20Code%20%7C%20Codex%20%7C%20Cursor-111827)](#installation)
-[![Skills](https://img.shields.io/badge/skills-1-0ea5e9)](#skill-index)
+[![Skills](https://img.shields.io/badge/skills-2-0ea5e9)](#skill-index)
 [![Language](https://img.shields.io/badge/language-中文%20%7C%20English-1f6feb)](README.md)
 
 [MaltSci.com](https://maltsci.com) · [中文](README.md)
 
 ## About
 
-`malt-skills` is an open-source collection of research Agent Skills maintained by **MaltSci** ([maltsci.com](https://maltsci.com)). It focuses on stages of the research workflow such as topic exploration, reading and evidence appraisal, writing and delivery, and figures. The repository currently provides its first skill, `malt-med-evidence` (medical evidence appraisal); additional stages will be added over time. Skills are organized around the standard `SKILL.md` format and can be installed into common coding agents with `npx skills`.
+`malt-skills` is an open-source collection of research Agent Skills maintained by **MaltSci** ([maltsci.com](https://maltsci.com)). It focuses on stages of the research workflow such as topic exploration, reading and evidence appraisal, writing and delivery, and figures. It currently provides `malt-med-evidence` (medical evidence appraisal) and `malt-deslop` (LLM-writing-pattern editing); additional stages will be added over time. Skills are organized around the standard `SKILL.md` format and can be installed into common coding agents with `npx skills`.
 
 ## Disclaimer
 
@@ -23,16 +23,26 @@
 | --- | --- | --- |
 | Topic Exploration | Ideas, funding clues, literature discovery | Coming soon |
 | Read & Ask | Deep reading, claim checks, evidence grading | **Available: `malt-med-evidence`** |
-| Write & Deliver | Polishing, citations, submission / response | Coming soon |
+| Write & Deliver | Polishing, citations, submission / response | **Available: `malt-deslop`** |
 | Figures & Viz | Mechanism figures, meeting charts | Coming soon |
 
-## Current skill: malt-med-evidence
+## Skills
+
+### malt-med-evidence
 
 Path: [`skills/malt-med-evidence/`](skills/malt-med-evidence/)
 
 Perform structured medical evidence appraisal for a DOI, PMID, abstract, PICO, or clinical claim. The default frameworks are **Oxford CEBM** + **GRADE**, with optional evidence pyramid and OpenEvidence-style heuristic. It supports coarse appraisal of a single study and formal GRADE for one named critical outcome in body-of-evidence mode. Output is a short structured report in the user’s language; single-study GRADE is not a formal body-of-evidence rating.
 
 More detail: [English](skills/malt-med-evidence/README_EN.md) · [中文](skills/malt-med-evidence/README.md)
+
+### malt-deslop
+
+Path: [`skills/malt-deslop/`](skills/malt-deslop/)
+
+Edit Chinese, English, and bilingual prose to remove formulaic LLM writing patterns without changing claims, evidence, register, or author voice. It supports requests such as “deslop,” “de-AI,” “remove AI-isms,” and “去 AI 味”. It is an editorial skill, not a detector-evasion tool.
+
+More detail: [English](skills/malt-deslop/README_EN.md) · [中文](skills/malt-deslop/README.md)
 
 ## Quick start
 
@@ -44,6 +54,8 @@ After install, try prompts like:
 | Add evidence pyramid + OE | Also add the evidence pyramid and OpenEvidence-style grades. |
 | Formal body GRADE | Body-of-evidence mode. PICO: …; critical outcome = …. Formal GRADE for PMID …. |
 | Diagnosis question | Diagnosis: can age-adjusted D-dimer rule out PE? Grade PMID 24643601 (Oxford + GRADE). |
+| Remove AI writing patterns | Use malt-deslop on this abstract. Keep the citations and formal register, but remove formulaic AI cadence. |
+| Remove Chinese AI tone | 用 malt-deslop 给这段书稿去 AI 味，保留原意、事实和正式语气。 |
 
 ## Installation
 
@@ -57,8 +69,11 @@ Requires Node.js 18+.
 # List skills in this repo
 npx skills add maltsci/malt-skills --list
 
-# Install the first skill (add --global / --agent as needed)
+# Install one skill (add --global / --agent as needed)
 npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
+
+# Install the writing skill
+npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
 
 # Install all skills
 npx skills add maltsci/malt-skills --skill '*' --yes --copy
@@ -69,10 +84,10 @@ npx skills add maltsci/malt-skills --skill '*' --yes --copy
 Paste this into **Claude Code / Codex / Cursor** (change the skill name if needed):
 
 ```text
-Install malt-med-evidence from this repo:
+Install malt-deslop from this repo:
 https://github.com/maltsci/malt-skills
 
-Run: npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
+Run: npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
 Add `--global` for a global install; to target one agent, use a corresponding parameter such as `--agent codex`, `--agent claude-code`, or `--agent cursor`.
 Keep the full skill directory (references/, scripts/); do not copy only SKILL.md.
 ```
@@ -90,6 +105,7 @@ Copy or symlink `skills/malt-med-evidence/` into your agent’s skills path.
 | Skill | Stage | Summary | Path |
 | --- | --- | --- | --- |
 | `malt-med-evidence` | Read & Ask | Oxford / GRADE medical evidence appraisal | [`skills/malt-med-evidence/`](skills/malt-med-evidence/) |
+| `malt-deslop` | Write & Deliver | Edit formulaic LLM writing patterns without altering meaning or register | [`skills/malt-deslop/`](skills/malt-deslop/) |
 
 ## Dependencies
 

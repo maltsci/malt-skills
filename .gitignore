@@ -11,6 +11,7 @@ venv/
 
 # Local generated outputs / env
 /output/
+skills/*-workspace/
 .env
 .env.*
 !.env.example

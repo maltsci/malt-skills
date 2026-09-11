@@ -1,0 +1,53 @@
+{
+  "skill_name": "malt-deslop",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Deslop this abstract. Keep all claims, numbers, and citations; retain a formal scientific register. Do not claim detector evasion.\n\n\"This groundbreaking study delves into the intricate interplay between sleep duration and cardiometabolic risk. Our comprehensive analysis underscores the pivotal role of regular sleep, showcasing substantial benefits across diverse populations [1].\"",
+      "expected_output": "A concise formal rewrite that removes clustered inflated vocabulary, preserves the cited claim and citation, and avoids inventing evidence.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Retains citation [1] and the sleep-duration/cardiometabolic-risk relationship.",
+          "type": "manual"
+        },
+        {
+          "text": "Does not promise detector evasion or invent evidence.",
+          "type": "manual"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "帮我给下面这段去 AI 味。保留作者的判断和事实，不要硬改成网络口语，也不要分析过程。\n\n“真正的沟通从来不是把话说满，而是把底层诉求对齐。重点来了，让我解释一下：这背后的底层逻辑是什么？更扎心的是，合同里没有退出条款，足以让所有人后背发凉。”",
+      "expected_output": "A Chinese rewrite that removes false contrast, presenter framing, empty jargon, and staged alarm while retaining the contract-risk point and a calm tone.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Preserves the contract's missing exit clause and its risk.",
+          "type": "manual"
+        },
+        {
+          "text": "Returns a rewrite rather than an unsolicited process analysis.",
+          "type": "manual"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Audit only; do not rewrite. This is a bilingual lab-newsletter paragraph. Identify only meaningful clustered AI-writing patterns, explain each in context, and do not call single ordinary words proof of AI authorship.\n\n“我们团队今天一次性讲透这项工作。The results showcase a comprehensive and transformative framework that not only improves accuracy, but also unlocks a new era of discovery. 这不是一次普通的更新，而是科研效率的天花板。”",
+      "expected_output": "A short audit that identifies presenter framing, inflated English vocabulary, empty symmetry, and Chinese false contrast/marketing language, with no authorship or detector claim.",
+      "files": [],
+      "assertions": [
+        {
+          "text": "Performs an audit only and identifies at least one structural and one lexical pattern.",
+          "type": "manual"
+        },
+        {
+          "text": "Does not present a single phrase as proof of AI authorship.",
+          "type": "manual"
+        }
+      ]
+    }
+  ]
+}
