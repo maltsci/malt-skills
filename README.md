@@ -84,8 +84,7 @@ npx skills add maltsci/malt-skills --skill '*' --yes --copy
 把下面这段发给 **Claude Code / Codex / Cursor** 即可（按需改技能名）：
 
 ```text
-请从这个仓库安装 malt-deslop：
-https://github.com/maltsci/malt-skills
+请从 maltsci/malt-skills 仓库安装位于 skills/malt-deslop 的 malt-deslop 技能。
 
 执行：npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
 需要全局安装时加 `--global`；需要指定 Agent 时使用对应参数，例如 `--agent codex`、`--agent claude-code` 或 `--agent cursor`。

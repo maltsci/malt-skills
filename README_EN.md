@@ -84,8 +84,7 @@ npx skills add maltsci/malt-skills --skill '*' --yes --copy
 Paste this into **Claude Code / Codex / Cursor** (change the skill name if needed):
 
 ```text
-Install malt-deslop from this repo:
-https://github.com/maltsci/malt-skills
+Install the malt-deslop skill from the maltsci/malt-skills repository, located at skills/malt-deslop.
 
 Run: npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
 Add `--global` for a global install; to target one agent, use a corresponding parameter such as `--agent codex`, `--agent claude-code`, or `--agent cursor`.
