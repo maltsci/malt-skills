@@ -2,14 +2,14 @@
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-2ea44f)](LICENSE)
 [![Install](https://img.shields.io/badge/install-Claude%20Code%20%7C%20Codex%20%7C%20Cursor-111827)](#installation)
-[![Skills](https://img.shields.io/badge/skills-2-0ea5e9)](#skill-index)
+[![Skills](https://img.shields.io/badge/skills-3-0ea5e9)](#skill-index)
 [![Language](https://img.shields.io/badge/language-中文%20%7C%20English-1f6feb)](README.md)
 
 [MaltSci.com](https://maltsci.com) · [中文](README.md)
 
 ## About
 
-`malt-skills` is an open-source collection of research Agent Skills maintained by **MaltSci** ([maltsci.com](https://maltsci.com)). It focuses on stages of the research workflow such as topic exploration, reading and evidence appraisal, writing and delivery, and figures. It currently provides `malt-med-evidence` (medical evidence appraisal) and `malt-deslop` (LLM-writing-pattern editing); additional stages will be added over time. Skills are organized around the standard `SKILL.md` format and can be installed into common coding agents with `npx skills`.
+`malt-skills` is an open-source collection of research Agent Skills maintained by **MaltSci** ([maltsci.com](https://maltsci.com)). It focuses on stages of the research workflow such as topic exploration, reading and evidence appraisal, writing and delivery, and figures. It currently provides `malt-med-evidence` (medical evidence appraisal), `malt-deslop` (LLM-writing-pattern editing), and `malt-writing-style` (style distillation and application); additional stages will be added over time. Skills are organized around the standard `SKILL.md` format and can be installed into common coding agents with `npx skills`.
 
 ## Disclaimer
 
@@ -23,7 +23,7 @@
 | --- | --- | --- |
 | Topic Exploration | Ideas, funding clues, literature discovery | Coming soon |
 | Read & Ask | Deep reading, claim checks, evidence grading | **Available: `malt-med-evidence`** |
-| Write & Deliver | Polishing, citations, submission / response | **Available: `malt-deslop`** |
+| Write & Deliver | Polishing, citations, submission / response, style transfer | **Available: `malt-deslop`, `malt-writing-style`** |
 | Figures & Viz | Mechanism figures, meeting charts | Coming soon |
 
 ## Skills
@@ -44,6 +44,14 @@ Edit Chinese, English, and bilingual prose to remove formulaic LLM writing patte
 
 More detail: [English](skills/malt-deslop/README_EN.md) · [中文](skills/malt-deslop/README.md)
 
+### malt-writing-style
+
+Path: [`skills/malt-writing-style/`](skills/malt-writing-style/)
+
+Distill an editable writing-style guide from sample articles, then apply a specified `style.md` to rewrite or draft prose. It supports Chinese and English triggers and samples; for scientific and other high-precision writing, it defaults to transferring structure rather than slogans or command tone. It is a constraint skill, not a personality clone.
+
+More detail: [English](skills/malt-writing-style/README_EN.md) · [中文](skills/malt-writing-style/README.md)
+
 ## Quick start
 
 After install, try prompts like:
@@ -56,6 +64,8 @@ After install, try prompts like:
 | Diagnosis question | Diagnosis: can age-adjusted D-dimer rule out PE? Grade PMID 24643601 (Oxford + GRADE). |
 | Remove AI writing patterns | Use malt-deslop on this abstract. Keep the citations and formal register, but remove formulaic AI cadence. |
 | Remove Chinese AI tone | 用 malt-deslop 给这段书稿去 AI 味，保留原意、事实和正式语气。 |
+| Distill a writing style | Use malt-writing-style to distill a style.md from these essays. |
+| Apply a style guide | Use malt-writing-style with this style.md to rewrite the methods paragraph; keep every uncertainty claim. |
 
 ## Installation
 
@@ -75,6 +85,9 @@ npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
 # Install the writing skill
 npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
 
+# Install the style distill-and-apply skill
+npx skills add maltsci/malt-skills --skill malt-writing-style --yes --copy
+
 # Install all skills
 npx skills add maltsci/malt-skills --skill '*' --yes --copy
 ```
@@ -84,9 +97,9 @@ npx skills add maltsci/malt-skills --skill '*' --yes --copy
 Paste this into **Claude Code / Codex / Cursor** (change the skill name if needed):
 
 ```text
-Install the malt-deslop skill from the maltsci/malt-skills repository, located at skills/malt-deslop.
+Install the malt-writing-style skill from the maltsci/malt-skills repository, located at skills/malt-writing-style.
 
-Run: npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
+Run: npx skills add maltsci/malt-skills --skill malt-writing-style --yes --copy
 Add `--global` for a global install; to target one agent, use a corresponding parameter such as `--agent codex`, `--agent claude-code`, or `--agent cursor`.
 Keep the full skill directory (references/, scripts/); do not copy only SKILL.md.
 ```
@@ -105,6 +118,7 @@ Copy or symlink `skills/malt-med-evidence/` into your agent’s skills path.
 | --- | --- | --- | --- |
 | `malt-med-evidence` | Read & Ask | Oxford / GRADE medical evidence appraisal | [`skills/malt-med-evidence/`](skills/malt-med-evidence/) |
 | `malt-deslop` | Write & Deliver | Edit formulaic LLM writing patterns without altering meaning or register | [`skills/malt-deslop/`](skills/malt-deslop/) |
+| `malt-writing-style` | Write & Deliver | Distill style.md from samples, then rewrite or draft against it | [`skills/malt-writing-style/`](skills/malt-writing-style/) |
 
 ## Dependencies
 

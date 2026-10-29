@@ -2,14 +2,14 @@
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-2ea44f)](LICENSE)
 [![Install](https://img.shields.io/badge/install-Claude%20Code%20%7C%20Codex%20%7C%20Cursor-111827)](#安装)
-[![Skills](https://img.shields.io/badge/skills-2-0ea5e9)](#技能索引)
+[![Skills](https://img.shields.io/badge/skills-3-0ea5e9)](#技能索引)
 [![Language](https://img.shields.io/badge/language-中文%20%7C%20English-1f6feb)](README_EN.md)
 
 [MaltSci.com](https://maltsci.com) · [English](README_EN.md)
 
 ## 简介
 
-`malt-skills` 由 [MaltSci.com](https://maltsci.com) **麦伴科研** 维护，是一个面向科研工作流的开源 Agent Skills 集合，关注课题探索、文献理解与证据评价、写作交付和科研作图等环节。当前提供 `malt-med-evidence`（医学证据评价）和 `malt-deslop`（LLM 写作模式编辑）两个技能，其他环节将逐步扩展。技能按标准 `SKILL.md` 组织，可用 `npx skills` 安装到主流编码助手。
+`malt-skills` 由 [MaltSci.com](https://maltsci.com) **麦伴科研** 维护，是一个面向科研工作流的开源 Agent Skills 集合，关注课题探索、文献理解与证据评价、写作交付和科研作图等环节。当前提供 `malt-med-evidence`（医学证据评价）、`malt-deslop`（LLM 写作模式编辑）和 `malt-writing-style`（写作风格提炼与应用）三个技能，其他环节将逐步扩展。技能按标准 `SKILL.md` 组织，可用 `npx skills` 安装到主流编码助手。
 
 ## 免责声明
 
@@ -23,7 +23,7 @@
 | --- | --- | --- | --- |
 | 课题探索 | Topic Exploration | 选题、基金线索、文献发现 | 即将扩展 |
 | 理解与问答 | Read & Ask | 精读、证据核查、循证评级 | **已有：`malt-med-evidence`** |
-| 写作与交付 | Write & Deliver | 润色、引文、投稿/回复 | **已有：`malt-deslop`** |
+| 写作与交付 | Write & Deliver | 润色、引文、投稿/回复、风格迁移 | **已有：`malt-deslop`、`malt-writing-style`** |
 | 作图与可视化 | Figures & Viz | 机制图、组会图表 | 即将扩展 |
 
 ## 技能
@@ -44,6 +44,14 @@
 
 详见技能说明：[中文](skills/malt-deslop/README.md) · [English](skills/malt-deslop/README_EN.md)
 
+### malt-writing-style
+
+路径：[`skills/malt-writing-style/`](skills/malt-writing-style/)
+
+从若干篇文章提炼可编辑的写作风格指南，再按指定的 `style.md` 改写或起草。支持中英文触发与样本；科研等高精度文本默认只迁移论证结构，不硬塞设问、口号或命令腔。这是风格约束工具，不是人格克隆。
+
+详见技能说明：[中文](skills/malt-writing-style/README.md) · [English](skills/malt-writing-style/README_EN.md)
+
 ## 快速开始
 
 安装完成后，可直接这样说：
@@ -56,6 +64,8 @@
 | 诊断问题 | 诊断问题：年龄校正 D-dimer 能否排除 PE？请评估 PMID 24643601（Oxford + GRADE）。 |
 | 去掉 AI 写作模式 | 请用 malt-deslop 修改这段摘要，保留引文和正式语气，但去掉模板化 AI 节奏。 |
 | 中文去 AI 味 | 请用 malt-deslop 给这段书稿去 AI 味，保留原意、事实和正式语气。 |
+| 提炼写作风格 | 请用 malt-writing-style 从这几篇文章提炼 style.md。 |
+| 按风格改写 | 请用 malt-writing-style，按这份 style.md 改写下面的方法学段落，保留全部不确定表述。 |
 
 ## 安装
 
@@ -75,6 +85,9 @@ npx skills add maltsci/malt-skills --skill malt-med-evidence --yes --copy
 # 安装写作编辑技能
 npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
 
+# 安装写作风格提炼与应用技能
+npx skills add maltsci/malt-skills --skill malt-writing-style --yes --copy
+
 # 安装全部技能
 npx skills add maltsci/malt-skills --skill '*' --yes --copy
 ```
@@ -84,9 +97,9 @@ npx skills add maltsci/malt-skills --skill '*' --yes --copy
 把下面这段发给 **Claude Code / Codex / Cursor** 即可（按需改技能名）：
 
 ```text
-请从 maltsci/malt-skills 仓库安装位于 skills/malt-deslop 的 malt-deslop 技能。
+请从 maltsci/malt-skills 仓库安装位于 skills/malt-writing-style 的 malt-writing-style 技能。
 
-执行：npx skills add maltsci/malt-skills --skill malt-deslop --yes --copy
+执行：npx skills add maltsci/malt-skills --skill malt-writing-style --yes --copy
 需要全局安装时加 `--global`；需要指定 Agent 时使用对应参数，例如 `--agent codex`、`--agent claude-code` 或 `--agent cursor`。
 必须保留完整目录（含 references/、scripts/），不要只复制 SKILL.md。
 ```
@@ -105,6 +118,7 @@ git clone https://github.com/maltsci/malt-skills.git
 | --- | --- | --- | --- |
 | `malt-med-evidence` | 理解与问答 | 医学证据评价（Oxford / GRADE 等） | [`skills/malt-med-evidence/`](skills/malt-med-evidence/) |
 | `malt-deslop` | 写作与交付 | 修改模板化 LLM 写作模式，保留原意与语体 | [`skills/malt-deslop/`](skills/malt-deslop/) |
+| `malt-writing-style` | 写作与交付 | 从样本提炼 style.md，并按指南改写或起草 | [`skills/malt-writing-style/`](skills/malt-writing-style/) |
 
 ## 依赖
 

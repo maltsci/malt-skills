@@ -1,0 +1,71 @@
+{
+  "skill_name": "malt-writing-style",
+  "evals": [
+    {
+      "id": 1,
+      "name": "distill-mixed-register-guide",
+      "prompt": "Distill a reusable writing-style guide from the three short samples in evals/fixtures/sample-corpus.md. Use only that file as source evidence. Write the result to the requested output path. The guide itself must be in English, but every Chinese quotation, phrase example, and punctuation example must remain Chinese. The source mixes a short directive, an explanatory talk, and a working conversation: state the scope of each register, and split the guide only if its rules genuinely conflict. Do not add Presentation Patterns or mathematical-notation conventions because the samples have neither. Treat uncertain claims as editable notes, not requirements.",
+      "expected_output": "An evidence-backed English style guide with a traceable Evidence Ledger, Chinese anchors, and register scope, ready to be supplied to a later rewrite.",
+      "files": [
+        "evals/fixtures/sample-corpus.md"
+      ],
+      "assertions": [
+        {
+          "text": "The saved guide contains a non-empty Scope section, an Evidence Ledger, and a Draft Notes section.",
+          "type": "manual"
+        },
+        {
+          "text": "The guide’s explanatory rules are predominantly English while its verbatim anchors or phrase examples preserve Chinese source text.",
+          "type": "manual"
+        },
+        {
+          "text": "The Scope or genre-specific sections distinguish at least two of the sampled registers: directives, speeches, and conversations.",
+          "type": "manual"
+        },
+        {
+          "text": "Every core rule and every exact frequency claim is tied to sample labels in the Evidence Ledger; no count is presented without the corresponding source list.",
+          "type": "manual"
+        },
+        {
+          "text": "The guide omits Presentation Patterns and mathematical-notation conventions.",
+          "type": "manual"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "apply-to-scientific-methods",
+      "prompt": "Using the style guide created from the sampled writings in the preceding extraction evaluation, rewrite the scientific-methods fixture. This is formal scientific-methods prose. Preserve every factual and epistemic constraint stated in the fixture.",
+      "expected_output": "A Chinese rewrite that transfers compatible reasoning structure while retaining a formal scientific register and all scientific uncertainty and factual constraints.",
+      "files": [
+        "evals/fixtures/dietary-fiber-paragraph.md"
+      ],
+      "assertions": [
+        {
+          "text": "The rewrite preserves all four fixture invariants, including that observed changes alone cannot be attributed to salt when other dietary factors change.",
+          "type": "manual"
+        },
+        {
+          "text": "The rewrite preserves uncertainty: it does not claim that fiber or salt has a proven causal effect.",
+          "type": "manual"
+        },
+        {
+          "text": "The rewrite does not introduce sample-specific names, places, incidents, or slogans from the style samples.",
+          "type": "manual"
+        },
+        {
+          "text": "The result is Chinese prose whose reasoning is more explicit and action-oriented than the source, while retaining necessary scientific terms required by the fixture.",
+          "type": "manual"
+        },
+        {
+          "text": "The formal scientific register is preserved: the rewrite adds no rhetorical questions, slogans, historical analogies, theatrical contrasts, or command voice.",
+          "type": "manual"
+        },
+        {
+          "text": "The output is a rewrite, not a long explanation of the source style.",
+          "type": "manual"
+        }
+      ]
+    }
+  ]
+}
